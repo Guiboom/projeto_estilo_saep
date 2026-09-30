@@ -10,19 +10,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema modelo_conceitual_teste
+-- Schema projetoSAEP
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema modelo_conceitual_teste
+-- Schema projetoSAEP
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `modelo_conceitual_teste` DEFAULT CHARACTER SET utf8 ;
-USE `modelo_conceitual_teste` ;
+CREATE SCHEMA IF NOT EXISTS `projetoSAEP` DEFAULT CHARACTER SET utf8 ;
+USE `projetoSAEP` ;
 
 -- -----------------------------------------------------
--- Table `modelo_conceitual_teste`.`Produto`
+-- Table `projetoSAEP`.`Produto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `modelo_conceitual_teste`.`Produto` (
+CREATE TABLE IF NOT EXISTS `projetoSAEP`.`Produto` (
   `id_produto` INT NOT NULL AUTO_INCREMENT,
   `foto_produto` VARCHAR(1000) NOT NULL,
   `preco_produto` DECIMAL(10,2) NOT NULL,
@@ -32,9 +32,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `modelo_conceitual_teste`.`Usuario`
+-- Table `projetoSAEP`.`Usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `modelo_conceitual_teste`.`Usuario` (
+CREATE TABLE IF NOT EXISTS `projetoSAEP`.`Usuario` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT,
   `nome_usuario` VARCHAR(100) NOT NULL,
   `senha_usuario` VARCHAR(45) NOT NULL,
@@ -44,9 +44,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `modelo_conceitual_teste`.`Pedido`
+-- Table `projetoSAEP`.`Pedido`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `modelo_conceitual_teste`.`Pedido` (
+CREATE TABLE IF NOT EXISTS `projetoSAEP`.`Pedido` (
   `id_pedido` INT NOT NULL AUTO_INCREMENT,
   `valor_total_pedido` DECIMAL(10,2) NOT NULL,
   `data_pedido` DATE NOT NULL,
@@ -56,16 +56,16 @@ CREATE TABLE IF NOT EXISTS `modelo_conceitual_teste`.`Pedido` (
   INDEX `fk_Pedido_Usuario_idx` (`Usuario_id_usuario` ASC),
   CONSTRAINT `fk_Pedido_Usuario`
     FOREIGN KEY (`Usuario_id_usuario`)
-    REFERENCES `modelo_conceitual_teste`.`Usuario` (`id_usuario`)
+    REFERENCES `projetoSAEP`.`Usuario` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `modelo_conceitual_teste`.`Contem`
+-- Table `projetoSAEP`.`Contem`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `modelo_conceitual_teste`.`Contem` (
+CREATE TABLE IF NOT EXISTS `projetoSAEP`.`Contem` (
   `id_pedido` INT NOT NULL,
   `id_produto` INT NOT NULL,
   `quantidade_contem` INT NOT NULL,
@@ -74,12 +74,12 @@ CREATE TABLE IF NOT EXISTS `modelo_conceitual_teste`.`Contem` (
   INDEX `fk_Pedido_has_Produto_Pedido1_idx` (`id_pedido` ASC),
   CONSTRAINT `fk_Pedido_has_Produto_Pedido1`
     FOREIGN KEY (`id_pedido`)
-    REFERENCES `modelo_conceitual_teste`.`Pedido` (`id_pedido`)
+    REFERENCES `projetoSAEP`.`Pedido` (`id_pedido`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Pedido_has_Produto_Produto1`
     FOREIGN KEY (`id_produto`)
-    REFERENCES `modelo_conceitual_teste`.`Produto` (`id_produto`)
+    REFERENCES `projetoSAEP`.`Produto` (`id_produto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
